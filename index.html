@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff4f5">
+  <meta name="description" content="Extensão de cílios com Manuella Campos. Veja os trabalhos e fale pelo WhatsApp.">
+  <title>Manuella Campos — Extensão de cílios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #38252c;
+      --muted: #796269;
+      --rose: #b85e78;
+      --rose-dark: #8e4059;
+      --paper: #fff6f5;
+      --blush: #f3dfe3;
+      --blush-strong: #f8e4e7;
+      --card: #fffafa;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .hero {
+      width: 100%;
+      overflow: hidden;
+      background: var(--blush-strong);
+    }
+    .hero img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .intro {
+      padding: clamp(42px, 6vw, 64px) 0 48px;
+      text-align: center;
+      background: #fff0f2;
+    }
+    .eyebrow {
+      color: var(--rose-dark);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .section-title {
+      font: 500 clamp(30px, 4vw, 42px)/1.16 'Playfair Display', serif;
+      margin: 12px 0 15px;
+    }
+    .intro p {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 16px);
+    }
+
+    .gallery-launch {
+      padding: 0 0 clamp(42px, 6vw, 64px);
+      background: #fff0f2;
+      text-align: center;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      max-width: 100%;
+      padding: 14px 23px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--rose);
+      color: white;
+      text-decoration: none;
+      font: 600 16px 'DM Sans', sans-serif;
+      box-shadow: 0 8px 22px #b9577330;
+      transition: background .2s, transform .2s;
+      cursor: pointer;
+    }
+    .button:hover, .dialog-button:hover {
+      background: var(--rose-dark);
+      transform: translateY(-2px);
+    }
+
+    .gallery-dialog {
+      width: min(1120px, calc(100% - 24px));
+      max-width: none;
+      max-height: min(92vh, 980px);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid #ead3d8;
+      border-radius: 24px;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: 0 24px 80px #2c172340;
+    }
+    .gallery-dialog::backdrop {
+      background: #2c1723a6;
+      backdrop-filter: blur(4px);
+    }
+    .dialog-inner { padding: clamp(18px, 4vw, 34px); }
+    .dialog-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+    .dialog-header .eyebrow { margin: 0; }
+    .dialog-title {
+      margin: 4px 0 0;
+      font: 500 clamp(26px, 4vw, 38px)/1.15 'Playfair Display', serif;
+      overflow-wrap: anywhere;
+    }
+    .dialog-button {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 9px 15px;
+      border: 1px solid #e4cbd1;
+      border-radius: 999px;
+      background: #fffafa;
+      color: var(--rose-dark);
+      font: 600 14px 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .dialog-button:hover { color: #fff; border-color: var(--rose-dark); }
+    .back-button { margin: 0 0 20px; }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+      gap: 16px;
+    }
+    .category-choice {
+      min-height: 132px;
+      padding: 22px;
+      border: 1px solid #e8cfd5;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #fffafa, #f8e4e7);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .category-choice:hover {
+      transform: translateY(-3px);
+      border-color: var(--rose);
+      box-shadow: 0 12px 24px #76485618;
+    }
+    .category-choice strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--rose-dark);
+      font: 500 22px/1.2 'Playfair Display', serif;
+      overflow-wrap: anywhere;
+    }
+    .category-choice span { color: var(--muted); font-size: 13px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .photo-thumb {
+      display: block;
+      width: 100%;
+      padding: 7px;
+      overflow: hidden;
+      border: 1px solid #ead3d8;
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 8px 22px #76485612;
+      cursor: zoom-in;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .photo-thumb:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px #76485620;
+    }
+    .photo-thumb img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 10px;
+      background: var(--blush);
+      object-fit: cover;
+    }
+    .image-error {
+      display: grid;
+      min-height: 180px;
+      padding: 18px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--blush);
+      color: var(--rose-dark);
+      text-align: center;
+      font-size: 13px;
+    }
+    .gallery-status {
+      padding: 24px;
+      border: 1px solid #ead3d8;
+      border-radius: 16px;
+      background: #fff0f2;
+      color: var(--muted);
+      text-align: center;
+    }
+    .retry-button {
+      margin-top: 12px;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--rose);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .lightbox {
+      display: grid;
+      gap: 16px;
+    }
+    .lightbox-image {
+      display: grid;
+      min-height: 240px;
+      max-height: 70vh;
+      padding: 12px;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #34252b;
+    }
+    .lightbox-image img {
+      display: block;
+      max-width: 100%;
+      max-height: 66vh;
+      object-fit: contain;
+    }
+    .lightbox-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .dialog-button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .details {
+      padding: clamp(42px, 6vw, 57px) 0;
+      background: var(--blush);
+    }
+    .details-inner {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(24px, 5vw, 60px);
+      align-items: center;
+    }
+    .details p {
+      max-width: 510px;
+      margin: 0;
+      color: var(--muted);
+    }
+    .service-card {
+      padding: clamp(22px, 4vw, 27px) clamp(22px, 4vw, 30px);
+      border: 1px solid #ead3d8;
+      border-radius: 18px;
+      background: var(--card);
+    }
+    .service-card .label {
+      color: var(--rose-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .service-card h3 {
+      margin: 6px 0 7px;
+      font: 500 24px 'Playfair Display', serif;
+    }
+    .service-card p { font-size: 14px; }
+
+    .contact {
+      padding: clamp(48px, 7vw, 70px) 20px 76px;
+      background: #fff0f2;
+      text-align: center;
+    }
+    .contact p {
+      max-width: 480px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+    }
+    .small-note {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer {
+      padding: 22px 0;
+      border-top: 1px solid #ead3d8;
+      background: var(--paper);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+    .footer-brand {
+      color: var(--ink);
+      font: 500 17px 'Playfair Display', serif;
+    }
+
+    @media (max-width: 1100px) {
+      .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 850px) {
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 36px, 540px); }
+      .details-inner { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .gallery-dialog { width: calc(100% - 16px); max-height: 94vh; border-radius: 18px; }
+      .dialog-inner { padding: 16px; }
+      .dialog-header { gap: 10px; }
+      .dialog-button { min-height: 40px; padding: 8px 12px; font-size: 13px; }
+      .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .category-choice { min-height: 118px; padding: 15px; }
+      .category-choice strong { font-size: 19px; }
+      .footer-inner { flex-direction: column; gap: 4px; text-align: center; }
+    }
+    @media (max-width: 360px) {
+      .wrap { width: calc(100% - 28px); }
+      .dialog-header { flex-direction: column; }
+      .close-button { align-self: flex-end; }
+      .category-grid { grid-template-columns: 1fr; }
+      .button { padding: 12px 17px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" id="inicio">
+      <img src="manuella.jpg" alt="Arte panorâmica de Manuella Campos para extensão de cílios, com foto e informações de agendamento">
+    </section>
+
+    <section class="intro">
+      <div class="wrap">
+        <div class="eyebrow">Seu momento de cuidado</div>
+        <h1 class="section-title">Beleza nos detalhes.</h1>
+        <p>Um atendimento pensado para valorizar seu olhar e deixar você ainda mais à vontade. Fale com a Manuella para conhecer o trabalho e combinar seu horário.</p>
+      </div>
+    </section>
+
+    <section class="gallery-launch" aria-label="Abrir galeria de trabalhos">
+      <button class="button" id="open-gallery" type="button" aria-haspopup="dialog">♡ &nbsp; Ver galeria de fotos</button>
+    </section>
+
+    <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-inner">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">Portfólio</p>
+            <h2 class="dialog-title" id="dialog-title">Galeria de trabalhos</h2>
+          </div>
+          <button class="dialog-button close-button" id="close-gallery" type="button">Fechar ✕</button>
+        </div>
+        <button class="dialog-button back-button" id="gallery-back" type="button" hidden>← Todas as categorias</button>
+        <div id="gallery-content" aria-live="polite">
+          <div class="gallery-status">Carregando categorias...</div>
+        </div>
+      </div>
+    </dialog>
+
+    <section class="details">
+      <div class="wrap details-inner">
+        <div>
+          <div class="eyebrow">O que ela faz</div>
+          <h2 class="section-title">Um toque especial para o seu olhar.</h2>
+          <p>Extensão de cílios com cuidado, dedicação e atenção a cada detalhe. Consulte pelo WhatsApp os detalhes do atendimento e os horários disponíveis.</p>
+        </div>
+        <div class="service-card">
+          <div class="label">Serviço</div>
+          <h3>Extensão de cílios</h3>
+          <p>Um resultado delicado e pensado para realçar sua beleza. Converse com a Manuella para saber mais.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="eyebrow">Vamos conversar?</div>
+      <h2 class="section-title">Seu próximo olhar começa aqui.</h2>
+      <p>Chame a Manuella no WhatsApp para saber mais e consultar os horários disponíveis.</p>
+      <a class="button" href="https://wa.me/5551985108885?text=Ol%C3%A1%2C%20Manuella!%20Gostaria%20de%20saber%20mais%20sobre%20extens%C3%A3o%20de%20c%C3%ADlios%20e%20hor%C3%A1rios%20dispon%C3%ADveis." target="_blank" rel="noopener">♡ &nbsp; Chamar no WhatsApp</a>
+      <span class="small-note">Número de teste: (51) 98510-8885</span>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-brand">Manuella Campos</span>
+      <span>Extensão de cílios · Feito com carinho ♡</span>
+    </div>
+  </footer>
+
+  <script>
+    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR7-wPWd-OqLY0f6-hPifBjmd-Cm3Ka4buYDXViKJOQlSYifUTui08QYgjH2I51M4ePA_g8KEczvUTO/pub?output=csv';
+    const galleryDialog = document.getElementById('gallery-dialog');
+    const galleryContent = document.getElementById('gallery-content');
+    const galleryTitle = document.getElementById('dialog-title');
+    const galleryBack = document.getElementById('gallery-back');
+    let galleryData = new Map();
+    let galleryReady = false;
+    let galleryFailed = false;
+    let currentCategory = '';
+    let currentPhotos = [];
+    let currentView = 'home';
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let field = '';
+      let quoted = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        if (char === '"') {
+          if (quoted && text[i + 1] === '"') {
+            field += '"';
+            i++;
+          } else {
+            quoted = !quoted;
+          }
+        } else if (char === ',' && !quoted) {
+          row.push(field);
+          field = '';
+        } else if ((char === '\n' || char === '\r') && !quoted) {
+          if (char === '\r' && text[i + 1] === '\n') i++;
+          row.push(field);
+          if (row.some(cell => cell.trim() !== '')) rows.push(row);
+          row = [];
+          field = '';
+        } else {
+          field += char;
+        }
+      }
+
+      row.push(field);
+      if (row.some(cell => cell.trim() !== '')) rows.push(row);
+      return rows;
+    }
+
+    function imageURLFromDrive(link) {
+      try {
+        const url = new URL(link);
+        if (url.hostname === 'drive.google.com') {
+          const pathMatch = url.pathname.match(/\/file\/d\/([^/]+)/);
+          const id = pathMatch ? pathMatch[1] : url.searchParams.get('id');
+          if (id) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w1600`;
+        }
+      } catch (error) {
+        return '';
+      }
+      return link;
+    }
+
+    function showStatus(message, retry = false) {
+      galleryContent.replaceChildren();
+      const box = document.createElement('div');
+      box.className = 'gallery-status';
+      const text = document.createElement('p');
+      text.textContent = message;
+      box.append(text);
+      if (retry) {
+        const button = document.createElement('button');
+        button.className = 'retry-button';
+        button.type = 'button';
+        button.textContent = 'Tentar de novo';
+        button.addEventListener('click', loadGallery);
+        box.append(button);
+      }
+      galleryContent.append(box);
+    }
+
+    function renderCategoryMenu() {
+      currentView = 'home';
+      galleryTitle.textContent = 'Galeria de trabalhos';
+      galleryBack.hidden = true;
+      galleryContent.replaceChildren();
+
+      if (galleryData.size === 0) {
+        showStatus('Ainda não há categorias na planilha.');
+        return;
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'category-grid';
+      galleryData.forEach((photos, categoryName) => {
+        const button = document.createElement('button');
+        button.className = 'category-choice';
+        button.type = 'button';
+        const name = document.createElement('strong');
+        name.textContent = categoryName;
+        const count = document.createElement('span');
+        count.textContent = photos.length === 1 ? '1 foto' : `${photos.length} fotos`;
+        button.append(name, count);
+        button.addEventListener('click', () => renderCategory(categoryName));
+        grid.append(button);
+      });
+      galleryContent.append(grid);
+    }
+
+    function renderCategory(categoryName) {
+      currentView = 'category';
+      currentCategory = categoryName;
+      currentPhotos = galleryData.get(categoryName) || [];
+      galleryTitle.textContent = categoryName;
+      galleryBack.hidden = false;
+      galleryBack.textContent = '← Todas as categorias';
+      galleryBack.onclick = renderCategoryMenu;
+      galleryContent.replaceChildren();
+
+      if (currentPhotos.length === 0) {
+        showStatus('Ainda não há fotos nesta categoria.');
+        return;
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'gallery-grid';
+      currentPhotos.forEach((photo, index) => {
+        const button = document.createElement('button');
+        button.className = 'photo-thumb';
+        button.type = 'button';
+        button.setAttribute('aria-label', `Ampliar foto ${index + 1} de ${currentPhotos.length}`);
+        const image = document.createElement('img');
+        image.src = photo;
+        image.alt = `Trabalho da categoria ${categoryName}`;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.referrerPolicy = 'no-referrer';
+        image.addEventListener('error', () => {
+          const message = document.createElement('span');
+          message.className = 'image-error';
+          message.textContent = 'Não foi possível carregar esta foto. Confira o link e a permissão no Drive.';
+          button.replaceChildren(message);
+          button.style.cursor = 'default';
+        }, { once: true });
+        button.append(image);
+        button.addEventListener('click', () => renderPhoto(index));
+        grid.append(button);
+      });
+      galleryContent.append(grid);
+    }
+
+    function renderPhoto(index) {
+      currentView = 'photo';
+      galleryTitle.textContent = `${currentCategory} · Foto ${index + 1} de ${currentPhotos.length}`;
+      galleryBack.hidden = false;
+      galleryBack.textContent = '← Voltar às fotos';
+      galleryBack.onclick = () => renderCategory(currentCategory);
+      galleryContent.replaceChildren();
+
+      const viewer = document.createElement('div');
+      viewer.className = 'lightbox';
+      const frame = document.createElement('div');
+      frame.className = 'lightbox-image';
+      const image = document.createElement('img');
+      image.src = currentPhotos[index];
+      image.alt = `Foto ampliada da categoria ${currentCategory}`;
+      image.referrerPolicy = 'no-referrer';
+      frame.append(image);
+
+      const controls = document.createElement('div');
+      controls.className = 'lightbox-controls';
+      const previous = document.createElement('button');
+      previous.className = 'dialog-button';
+      previous.type = 'button';
+      previous.textContent = '← Anterior';
+      previous.disabled = index === 0;
+      previous.addEventListener('click', () => renderPhoto(index - 1));
+      const next = document.createElement('button');
+      next.className = 'dialog-button';
+      next.type = 'button';
+      next.textContent = 'Próxima →';
+      next.disabled = index === currentPhotos.length - 1;
+      next.addEventListener('click', () => renderPhoto(index + 1));
+      controls.append(previous, next);
+      viewer.append(frame, controls);
+      galleryContent.append(viewer);
+    }
+
+    async function loadGallery() {
+      galleryReady = false;
+      galleryFailed = false;
+      showStatus('Carregando categorias...');
+
+      try {
+        const response = await fetch(SHEET_CSV_URL, { cache: 'no-store' });
+        if (!response.ok) throw new Error('CSV indisponível');
+        const text = (await response.text()).replace(/^\uFEFF/, '');
+        const rows = parseCSV(text);
+        const categories = new Map();
+
+        rows.slice(1).forEach(row => {
+          const photoLink = (row[0] || '').trim();
+          const categoryName = (row[2] || '').trim() || (photoLink ? 'Sem categoria' : '');
+          if (!categoryName) return;
+          if (!categories.has(categoryName)) categories.set(categoryName, []);
+          if (photoLink) {
+            const photoURL = imageURLFromDrive(photoLink);
+            if (photoURL) categories.get(categoryName).push(photoURL);
+          }
+        });
+
+        galleryData = categories;
+        galleryReady = true;
+        if (galleryDialog.open) renderCategoryMenu();
+      } catch (error) {
+        galleryFailed = true;
+        if (galleryDialog.open) showStatus('Não foi possível carregar a galeria agora. Confira se a planilha continua publicada.', true);
+      }
+    }
+
+    document.getElementById('open-gallery').addEventListener('click', () => {
+      galleryDialog.showModal();
+      if (galleryReady) renderCategoryMenu();
+      else if (galleryFailed) showStatus('Não foi possível carregar a galeria agora. Confira se a planilha continua publicada.', true);
+      else showStatus('Carregando categorias...');
+    });
+
+    document.getElementById('close-gallery').addEventListener('click', () => galleryDialog.close());
+    galleryDialog.addEventListener('click', event => {
+      if (event.target === galleryDialog) galleryDialog.close();
+    });
+
+    loadGallery();
+  </script>
+</body>
+</html>
